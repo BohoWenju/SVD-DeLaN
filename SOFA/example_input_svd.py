@@ -168,10 +168,8 @@ class CylinderController(Sofa.Core.Controller):
         # Desired angle trajectory (example)
         q_ref = np.array([25.0/rad2deg], dtype=float)   # rad, choose what you want
 
-        u_fb = feedback_control(q, q_ref, dq)  
         u_ff = feedforward_control(q_ref)
-        pressure_cmd = u_ff # + u_fb
-        # pressure_cmd = 0
+        pressure_cmd = u_ff 
         pressure_cmd = float(np.asarray(pressure_cmd).squeeze())  # converts np/jax scalars to Python float
 
         # --- apply input (handle scalar vs vector data) ---
